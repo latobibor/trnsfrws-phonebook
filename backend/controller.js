@@ -55,11 +55,20 @@ class Controller {
             return next(new restify.BadRequestError('Phone number cannot be empty.'));
         }
 
-        this.db.addContact({
-            id: id,
-            name,
-            phoneNumber
-        });
+        try {
+            this.db.addContact({
+                id: id,
+                name,
+                phoneNumber
+            });
+        } catch (error) {
+            if (false) {
+                // error should be logged in real life
+                console.log('Something happened inside the DB', error);
+            }
+
+            return next(new restify.InternalServerError());
+        }
 
         res.send(201);
         return next();

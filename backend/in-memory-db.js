@@ -29,7 +29,7 @@ class InMemoryDatabase {
     }
 
     searchByName(name) {
-        return this.records.filter(record => record.name.indexOf(name) > -1);
+        return this.records.filter(record => record.name.toLowerCase().indexOf(name.toLowerCase()) > -1);
     }
 
     searchById(id) {

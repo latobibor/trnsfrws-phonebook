@@ -180,6 +180,18 @@ describe('Controller', function () {
       sinon.assert.calledWith(res.send, 201);
     });
 
+    it('should return with error when DB threw an error', function () {
+      req.body = JSON.stringify(validRequestBody);
+
+      db.addContact = () => { throw new Error(); };
+
+      controller.addContact(req, res, next);
+
+      const errorMessageBody = next.getCall(0).args[0].body;
+      expect(errorMessageBody.code).toBe('InternalServerError');
+      expect(errorMessageBody.message).toNotExist();
+    });
+
     function verifyBadRequestError(message) {
       const errorMessageBody = next.getCall(0).args[0].body;
       expect(errorMessageBody.code).toBe('BadRequestError');
