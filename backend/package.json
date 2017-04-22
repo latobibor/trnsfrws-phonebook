@@ -1,0 +1,9 @@
+{
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "restify": "^4.3.0",
+        "restify-plugins": "^1.6.0"
+    }
+}
