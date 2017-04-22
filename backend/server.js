@@ -1,5 +1,6 @@
 const restify = require('restify');
 const plugins = require('restify-plugins');
+const setRoutes = require('./routes');
 
 const server = restify.createServer({
   name: 'phone-book-backend',
@@ -10,10 +11,7 @@ server.use(plugins.acceptParser(server.acceptable));
 server.use(plugins.queryParser());
 server.use(plugins.bodyParser());
 
-server.get('/echo/:name', function (req, res, next) {
-  res.send(req.params);
-  return next();
-});
+setRoutes(server);
 
 server.listen(8080, function () {
   console.log('%s listening at %s', server.name, server.url);

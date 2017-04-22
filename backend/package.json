@@ -1,9 +1,10 @@
 {
-    "scripts": {
-        "start": "node server.js"
-    },
-    "dependencies": {
-        "restify": "^4.3.0",
-        "restify-plugins": "^1.6.0"
-    }
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "chance": "^1.0.6",
+    "restify": "^4.3.0",
+    "restify-plugins": "^1.6.0"
+  }
 }
