@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "chance": "^1.0.6",
+    "guid": "0.0.12",
     "restify": "^4.3.0",
     "restify-plugins": "^1.6.0"
   }

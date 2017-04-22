@@ -7,13 +7,17 @@ class InMemoryDatabase {
     }
 
     addContact(contact) {
-        this.records.push(
-            {
-                id: contact.id,
-                name: contact.name,
-                phoneNumber: contact.phoneNumber
-            }
-        );
+        if (!this.searchById(contact.id)) {
+            this.records.push(
+                {
+                    id: contact.id.value,
+                    name: contact.name,
+                    phoneNumber: contact.phoneNumber
+                }
+            );
+        } else {
+            throw new Error('Contact with this ID was already added');
+        }
     }
 
     deleteContact(contact) {
@@ -26,6 +30,19 @@ class InMemoryDatabase {
 
     searchByName(name) {
         return this.records.filter(record => record.name.indexOf(name) > -1);
+    }
+
+    searchById(id) {
+        const contacts = this.records.filter(record => record.id === id.value);
+        
+        if (contacts.length === 1) {
+            return contacts[0];
+        } else if (contacts.length > 1) {
+            throw new Error('inconsistent DB?');
+        }
+
+        // I know by default JS would return undefined, but I wanted to make it clear, that I did not forget this
+        return undefined;
     }
 
     get contacts() {
