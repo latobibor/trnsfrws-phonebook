@@ -7,13 +7,19 @@ import { ContactsApiService } from '../../services/contacts-api.service';
   templateUrl: './contacts.html',
 })
 export class Contacts implements OnInit {
-  public visibleContacts: Contact[] = [];
+  public contacts: Contact[] = [];
+  public searchCallback: Function;
 
   constructor(@Inject(ContactsApiService) private contactsApiService: ContactsApiService) {
-    this.visibleContacts = [];
+    this.contacts = [];
+    this.searchCallback = this.searchByName.bind(this);
   }
 
-  async ngOnInit(): Promise<void> {
-    this.visibleContacts = await this.contactsApiService.getAllContacts();
+  public async ngOnInit(): Promise<void> {
+    this.contacts = await this.contactsApiService.getAllContacts();
+  }
+
+  public async searchByName(name: string): Promise<void> {
+    this.contacts = await this.contactsApiService.searchByName(name);
   }
 }

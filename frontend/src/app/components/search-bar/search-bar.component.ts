@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'search-bar',
-  templateUrl: './search-bar.html',
+    inputs: [ 'resultCallback' ],
+    selector: 'search-bar',
+    templateUrl: './search-bar.html',
 })
 export class SearchBar {
     public searchPhrase: string;
+    public resultCallback: Function;
 
     constructor() {
-
     }
 
     public getResults() {
-        console.log('s:', this.searchPhrase);
+        this.resultCallback(this.searchPhrase);
     }
 }

@@ -1,7 +1,4 @@
 <div class="phone-book_contacts-container">
-    <ul>
-        <li *ngFor="let contact of visibleContacts;">
-            <contact [model]="contact"></contact>
-        </li>
-    </ul>
+    <search-bar [resultCallback]="searchCallback"></search-bar>
+    <contact-list [visibleContacts]="contacts"></contact-list>
 </div>
