@@ -1,0 +1,9 @@
+<div class="phone-book_search-container">
+    <label>Search by name:</label>
+    <input 
+        type="text" 
+        [(ngModel)]="searchPhrase" 
+        (ngModelChange)="getResults()"
+        placeholder="Write at least 3 characters to start searching...">
+    <a href="#" (click)="getResults()">Meh</a>
+</div>
