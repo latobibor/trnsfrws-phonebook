@@ -1,8 +1,15 @@
 <div class="phone-book_search-container">
     <label>Search by name:</label>
-    <input 
+    <input
+        id="nameSearchField"
+        name="nameSearchField"
         type="text" 
         [(ngModel)]="searchPhrase" 
         (ngModelChange)="getResults()"
-        placeholder="Write at least 3 characters to start searching...">
+        placeholder="Write at least 2 characters to start searching..."
+        minlength="2"
+        #nameSearchField="ngModel">
+    <div *ngIf="nameSearchField.errors && (nameSearchField.dirty || nameSearchField.touched)" class="alert">
+        <div [hidden]="!nameSearchField.errors.minlength">Please write at least 2 characters!</div>
+    </div>
 </div>
