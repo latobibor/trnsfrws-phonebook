@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './contact-list.html',
 })
 export class ContactList {
-  public dummy: string = '';
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { Contacts } from './components/contacts/contacts.component';
 import { ContactList } from './components/contact-list/contact-list.component';
@@ -14,7 +15,8 @@ import { AppComponent } from './main-container/app.component';
 @NgModule({
   imports: [ 
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpModule
     ],
   declarations: [ 
     AppComponent,

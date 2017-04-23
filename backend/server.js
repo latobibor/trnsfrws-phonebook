@@ -10,6 +10,9 @@ const server = restify.createServer({
 server.use(plugins.acceptParser(server.acceptable));
 server.use(plugins.queryParser());
 server.use(plugins.bodyParser());
+server.use(restify.CORS({
+  origins: ['*']
+}));
 
 setRoutes(server);
 
