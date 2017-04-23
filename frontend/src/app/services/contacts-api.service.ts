@@ -13,7 +13,7 @@ const backendHost = 'http://localhost:8080';
 @Injectable()
 export class ContactsApiService {
     private newContactAddedSubject: Subject<{}>;
-  
+
     constructor(private http: Http) {
         this.newContactAddedSubject = new Subject();
     }

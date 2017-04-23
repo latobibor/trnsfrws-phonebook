@@ -14,12 +14,12 @@ import { ContactsApiService } from './services/contacts-api.service';
 import { AppComponent } from './main-container/app.component';
 
 @NgModule({
-  imports: [ 
+  imports: [
     BrowserModule,
     FormsModule,
     HttpModule
     ],
-  declarations: [ 
+  declarations: [
     AppComponent,
     AddContact,
     Contacts,
