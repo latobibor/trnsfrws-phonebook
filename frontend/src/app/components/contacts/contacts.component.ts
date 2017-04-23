@@ -1,25 +1,37 @@
-import { Inject, Component, OnInit } from '@angular/core';
+import { Inject, Component, OnInit, OnDestroy } from '@angular/core';
 import { Contact } from '../../models/contact.interface';
 import { ContactsApiService } from '../../services/contacts-api.service';
+
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'contacts',
   templateUrl: './contacts.html',
 })
-export class Contacts implements OnInit {
+export class Contacts implements OnInit, OnDestroy {
   public contacts: Contact[] = [];
   public searchCallback: Function;
+  private newContactAdded: Subscription;
 
   constructor(@Inject(ContactsApiService) private contactsApiService: ContactsApiService) {
     this.contacts = [];
     this.searchCallback = this.searchByName.bind(this);
+    this.newContactAdded = this.contactsApiService.newContactAdded.subscribe(this.loadContacts.bind(this));
   }
 
   public async ngOnInit(): Promise<void> {
-    this.contacts = await this.contactsApiService.getAllContacts();
+    this.loadContacts();
+  }
+
+  public ngOnDestroy(): void {
+    this.newContactAdded.unsubscribe();
   }
 
   public async searchByName(name: string): Promise<void> {
     this.contacts = await this.contactsApiService.searchByName(name);
+  }
+
+  private async loadContacts() {
+    this.contacts = await this.contactsApiService.getAllContacts();
   }
 }
