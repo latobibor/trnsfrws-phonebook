@@ -6,7 +6,7 @@
         type="text" 
         [(ngModel)]="searchPhrase" 
         (ngModelChange)="getResults()"
-        placeholder="Write at least 2 characters to start searching..."
+        placeholder="Enter part of name"
         minlength="2"
         #nameSearchField="ngModel">
     <div *ngIf="nameSearchField.errors && (nameSearchField.dirty || nameSearchField.touched)" class="alert">

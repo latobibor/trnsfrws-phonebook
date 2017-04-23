@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { AddContact } from './components/add-contact/add-contact.component';
 import { Contacts } from './components/contacts/contacts.component';
 import { ContactList } from './components/contact-list/contact-list.component';
 import { Contact } from './components/contact/contact.component';
@@ -20,6 +21,7 @@ import { AppComponent } from './main-container/app.component';
     ],
   declarations: [ 
     AppComponent,
+    AddContact,
     Contacts,
     Contact,
     ContactList,

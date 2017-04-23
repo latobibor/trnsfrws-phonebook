@@ -37,6 +37,43 @@ class Controller {
 
         const parsedBody = JSON.parse(req.body);
 
+        const name = parsedBody.name;
+        const phoneNumber = parsedBody.phoneNumber;
+
+        let validated = false;
+
+        if (!name || name.length < minimumNameLength || name.length > maximumNameLength) {
+            return next(new restify.BadRequestError(`Name should be ${minimumNameLength}-${maximumNameLength} long.`));
+        }
+
+        if (!phoneNumber) {
+            return next(new restify.BadRequestError('Phone number cannot be empty.'));
+        }
+
+        try {
+            this.db.addContact({
+                name,
+                phoneNumber
+            });
+        } catch (error) {
+            if (false) {
+                // error should be logged in real life
+                console.log('Something happened inside the DB', error);
+            }
+
+            return next(new restify.InternalServerError());
+        }
+
+        res.send(201);
+        return next();
+    };
+
+    updateContact(req, res, next) {
+        const minimumNameLength = 3;
+        const maximumNameLength = 100;
+
+        const parsedBody = JSON.parse(req.body);
+
         const id = new guid(parsedBody.userId)
         const name = parsedBody.name;
         const phoneNumber = parsedBody.phoneNumber;
@@ -56,7 +93,7 @@ class Controller {
         }
 
         try {
-            this.db.addContact({
+            this.db.updateContact({
                 id: id,
                 name,
                 phoneNumber
@@ -70,7 +107,7 @@ class Controller {
             return next(new restify.InternalServerError());
         }
 
-        res.send(201);
+        res.send(200);
         return next();
     };
 }

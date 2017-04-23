@@ -7,21 +7,28 @@ class InMemoryDatabase {
     }
 
     addContact(contact) {
-        if (!this.searchById(contact.id)) {
-            this.records.push(
-                {
+        this.records.push({
+                id: chance.guid(),
+                name: contact.name,
+                phoneNumber: contact.phoneNumber
+            });
+    }
+
+    updateContact(contact) {
+        const index = this.findRecordIndexByContact(contact);
+        if (index > -1) {
+            this.records[index] = {
                     id: contact.id.value,
                     name: contact.name,
                     phoneNumber: contact.phoneNumber
-                }
-            );
+                };
         } else {
-            throw new Error('Contact with this ID was already added');
+            throw new Error(`Contact with this ID [${contact.id}] was not found`);
         }
     }
 
     deleteContact(contact) {
-        const index = this.records.findIndex(record => record.id === contact.id);
+        const index = this.findRecordIndexByContact(contact);
 
         if (index > -1) {
             array.splice(index, 1);
@@ -43,6 +50,10 @@ class InMemoryDatabase {
 
         // I know by default JS would return undefined, but I wanted to make it clear, that I did not forget this
         return undefined;
+    }
+
+    findRecordIndexByContact(contact) {
+        return this.records.findIndex(record => record.id === contact.id);
     }
 
     get contacts() {

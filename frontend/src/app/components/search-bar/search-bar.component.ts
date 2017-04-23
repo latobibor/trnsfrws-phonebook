@@ -13,6 +13,8 @@ export class SearchBar {
     }
 
     public getResults() {
-        this.resultCallback(this.searchPhrase);
+        if (this.searchPhrase.length > 1) {
+            this.resultCallback(this.searchPhrase);
+        }
     }
 }

@@ -1,0 +1,38 @@
+<div class="phone-book_add-contact-container">
+    <h2>Add a contact</h2>
+    <form #addContactForm="ngForm" (ngSubmit)="onSubmit()">
+        <label>Name:</label>
+        <input
+            id="nameField"
+            name="nameField"
+            type="text" 
+            [(ngModel)]="name" 
+            placeholder="Enter part of name"
+            minlength="3"
+            maxlength="100"
+            #nameField="ngModel">
+        <div *ngIf="nameField.errors && (nameField.dirty || nameField.touched)" class="alert">
+            <div [hidden]="!nameField.errors.minlength">Name must be more than 3 characters!</div>
+            <div [hidden]="!nameField.errors.minlength">Name must be under 100 characters!</div>
+        </div>
+        
+        <label>Phone number:</label>
+        <input
+            id="phoneField"
+            name="phoneField"
+            type="text" 
+            [(ngModel)]="phoneNumber" 
+            placeholder="Enter part of name"
+            minlength="6"
+            maxlength="20"
+            #phoneField="ngModel">
+        <div *ngIf="phoneField.errors && (phoneField.dirty || phoneField.touched)" class="alert">
+            <div [hidden]="!phoneField.errors.minlength">Phone number must be more than 6 characters!</div>
+            <div [hidden]="!phoneField.errors.minlength">Phone number must be under 20 characters!</div>
+        </div>
+
+        <button class="submit" type="submit">
+            +
+        </button>
+    </form>
+</div>
