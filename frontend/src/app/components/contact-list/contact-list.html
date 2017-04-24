@@ -1,5 +1,10 @@
 <div class="phone-book_contact-list">
+    <h2>Contacts</h2>
     <ul>
+        <li class="header">
+            <div>Name</div>
+            <div class="phone-book_contact-list_phone-number-label">Phone number</div>
+        </li>
         <li *ngFor="let contact of visibleContacts;">
             <contact [model]="contact"></contact>
         </li>

@@ -1,6 +1,8 @@
 <div class="phone-book_search-container">
-    <label>Search by name:</label>
+    <h2>Search</h2>
+    <label>By name:</label>
     <input
+        class="form-control"
         type="text" 
         [(ngModel)]="searchPhrase" 
         (ngModelChange)="getResults()"

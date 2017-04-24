@@ -1,5 +1,95 @@
+@import url(http://fonts.googleapis.com/css?family=Kalam);
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+/* Main level */
+.phone-book_main-container {
+    height: 100%;
+    background-color: #EEE;
+    display: flex;
+}
+
+.phone-book_app-container {
+    order: 2;
+    flex: 1;
+    max-width: 800px;
+    min-width: 200px;
+    background-color: #DDD;
+}
+
+.phone-book_left {
+    order: 1;
+    flex: 1;
+}
+
+.phone-book_right {
+    order: 3;
+    flex: 1;
+}
+
+/* Middle container */
+.phone-book_app-container {
+    padding: 0 25px;
+}
+
 h1 {
   color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+h2 {
+  margin-bottom: 0.2em;
+  font-size: 16pt;
+}
+
+/* Main container */
+@media (min-width: 500px) {
+  .phone-book_contacts-container add-contact {
+    order: 2;
+  }
+}
+
+/* Add contact */ 
+.phone-book_add-contact-container {
+  max-width: 50%;
+}
+
+/* contacts list */
+.phone-book_contact-list ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.phone-book_contact-list li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+
+  font-size: 1.2em;
+}
+
+.phone-book_contact-list .header {
+  font-weight: bold;
+}
+
+.phone-book_contact-list_phone-number-label {
+  padding-right: 25%;
+}
+
+/* contact */
+contact {
+  width: 100%;
+}
+
+.phone-book_contact-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.phone-book_contact_phone-number {
+  padding-right: 25%;
 }
