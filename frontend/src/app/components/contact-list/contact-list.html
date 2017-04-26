@@ -10,5 +10,5 @@
             <contact [model]="contact"></contact>
         </li>
     </ul>
-    <span *ngIf="visibleContacts.length === 0" class="">None of your contacts matched your search criteria</span>
+    <div *ngIf="visibleContacts.length === 0" class="info-label">None of your contacts matched your search criteria</div>
 </div>
