@@ -77,16 +77,30 @@ describe('Controller', function () {
     });
   });
 
-  it('searchByName should use name value from request parameters', function () {
-    req.params = { 
-      name: 'Név Tibor'
-    };
+  describe('Search', function () {
+    beforeEach(function () {
+      db.search = sinon.stub().returns([ 'item' ]);
+    });
 
-    db.searchByName = sinon.stub().returns([ 'item' ]);
+    it('should call res.send with result', function () {
+      req.params = { 
+        name: 'Név Tibor'
+      };      
 
-    controller.searchByName(req, res, next);
+      controller.search(req, res, next);
 
-    sinon.assert.calledWith(res.send, [ 'item' ]);
+      sinon.assert.calledWith(res.send, [ 'item' ]);
+    });
+
+    it('should call db.search with request parameters', function () {
+      req.params = { 
+        name: 'Név Tibor',
+        phoneNumber: 123
+      };
+
+      controller.search(req, res, next);
+      sinon.assert.calledWith(db.search, { name: req.params.name, phoneNumber: req.params.phoneNumber });
+    });
   });
 
   describe('addContact', function () {
@@ -94,7 +108,6 @@ describe('Controller', function () {
 
     beforeEach(function () {
       validRequestBody = {
-        userId: validGuid,
         name: 'aasdf',
         phoneNumber: '(234) 23424'
       };
@@ -102,22 +115,8 @@ describe('Controller', function () {
       db.addContact = sinon.spy();
     });
 
-    it('should return with error when GUID could not be parsed', function () {
-      const wrongUserId = 'blah blah';
-
-      req.body = JSON.stringify({ 
-        userId: wrongUserId
-      });
-
-      controller.addContact(req, res, next);
-
-      verifyBadRequestError(`Bad user id format [${wrongUserId}]`);
-    });
-
     it('should return with error when name was not specified', function () {
-      req.body = JSON.stringify({ 
-        userId: validGuid
-      });
+      req.body = JSON.stringify({});
 
       controller.addContact(req, res, next);
 
@@ -125,10 +124,7 @@ describe('Controller', function () {
     });
 
     it('should return with error when name was too short', function () {
-      req.body = JSON.stringify({ 
-        userId: validGuid,
-        name: 'a'
-      });
+      req.body = JSON.stringify({ name: 'a' });
 
       controller.addContact(req, res, next);
 
@@ -137,7 +133,6 @@ describe('Controller', function () {
 
     it('should return with error when name are too long', function () {
       req.body = JSON.stringify({ 
-        userId: validGuid,
         name: '01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
       });
 
@@ -147,10 +142,7 @@ describe('Controller', function () {
     });
 
     it('should return with error when phone number was empty', function () {
-      req.body = JSON.stringify({ 
-        userId: validGuid,
-        name: 'aasdf'
-      });
+      req.body = JSON.stringify({ name: 'aasdf' });
 
       controller.addContact(req, res, next);
 
@@ -166,7 +158,6 @@ describe('Controller', function () {
       sinon.assert.calledOnce(db.addContact);
       const callArgs = db.addContact.getCall(0).args[0];
       
-      expect(callArgs.id.value).toBe(validGuid);
       expect(callArgs.name).toBe('aasdf');
       expect(callArgs.phoneNumber).toBe('(234) 23424');
       expect(callArgs.maliciousAdditionalField).toNotExist();

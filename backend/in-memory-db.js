@@ -35,8 +35,10 @@ class InMemoryDatabase {
         }
     }
 
-    searchByName(name) {
-        return this.records.filter(record => record.name.toLowerCase().indexOf(name.toLowerCase()) > -1);
+    search({ name = '', phoneNumber = '' }) {
+        return this.records
+                .filter(record => record.name.toLowerCase().indexOf(name.toLowerCase()) > -1)
+                .filter(record => record.phoneNumber.toLowerCase().indexOf(phoneNumber.toLowerCase()) > -1);
     }
 
     searchById(id) {

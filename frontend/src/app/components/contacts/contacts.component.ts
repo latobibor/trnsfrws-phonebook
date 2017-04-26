@@ -15,7 +15,7 @@ export class Contacts implements OnInit, OnDestroy {
 
   constructor(@Inject(ContactsApiService) private contactsApiService: ContactsApiService) {
     this.contacts = [];
-    this.searchCallback = this.searchByName.bind(this);
+    this.searchCallback = this.search.bind(this);
     this.newContactAdded = this.contactsApiService.newContactAdded.subscribe(this.loadContacts.bind(this));
   }
 
@@ -27,8 +27,9 @@ export class Contacts implements OnInit, OnDestroy {
     this.newContactAdded.unsubscribe();
   }
 
-  public async searchByName(name: string): Promise<void> {
-    this.contacts = await this.contactsApiService.searchByName(name);
+  public async search({ name = '', phoneNumber = '' }): Promise<void> {
+    console.log('eee', name, phoneNumber);
+    this.contacts = await this.contactsApiService.search(name, phoneNumber);
   }
 
   private async loadContacts() {

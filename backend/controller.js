@@ -26,8 +26,12 @@ class Controller {
         return next(new restify.NotFoundError(`Record with id [${req.params.userId}] was not found in the database`));
     }
 
-    searchByName(req, res, next) {
-        res.send(this.db.searchByName(req.params.name));
+    search(req, res, next) {
+        res.send(this.db.search({
+            name: req.params.name,
+            phoneNumber: req.params.phoneNumber
+        }));
+        
         return next();
     }
 

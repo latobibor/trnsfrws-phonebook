@@ -1,10 +1,21 @@
 <div class="phone-book_search-container">
     <h2>Search</h2>
-    <label>By name:</label>
-    <input
-        class="form-control"
-        type="text" 
-        [(ngModel)]="searchPhrase" 
-        (ngModelChange)="getResults()"
-        placeholder="Enter part of name">
+    <div class="phone-book_search-by">
+        <label>By name:</label>
+        <input
+            class="form-control"
+            type="text" 
+            [(ngModel)]="searchPhrase" 
+            (ngModelChange)="getResults()"
+            placeholder="Enter part of name">
+    </div>
+    <div class="phone-book_search-by">
+        <label>By phone number:</label>
+        <input
+            class="form-control"
+            type="text" 
+            [(ngModel)]="searchNumber" 
+            (ngModelChange)="getResults()"
+            placeholder="Enter part of phone number">
+    </div>
 </div>

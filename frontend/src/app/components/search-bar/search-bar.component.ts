@@ -7,12 +7,13 @@ import { Component } from '@angular/core';
 })
 export class SearchBar {
     public searchPhrase: string;
+    public searchNumber: string;
     public resultCallback: Function;
 
     constructor() {
     }
 
     public getResults() {
-        this.resultCallback(this.searchPhrase);
+        this.resultCallback({ name: this.searchPhrase, phoneNumber: this.searchNumber });
     }
 }

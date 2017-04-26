@@ -18,8 +18,8 @@ export class ContactsApiService {
         this.newContactAddedSubject = new Subject();
     }
 
-    public searchByName(name: string): Promise<Contact[]> {
-        return this.http.get(`${backendHost}/search/${name}`)
+    public search(name: string, phoneNumber: string): Promise<Contact[]> {
+        return this.http.get(`${backendHost}/search/${name}/${phoneNumber}`)
                         .map(this.extractData)
                         .toPromise();
     }
