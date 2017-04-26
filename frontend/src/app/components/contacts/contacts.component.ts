@@ -31,7 +31,7 @@ export class Contacts implements OnInit, OnDestroy {
     this.contacts = await this.contactsApiService.search(name, phoneNumber);
   }
 
-  private async loadContacts() {
+  private async loadContacts(): Promise<void> {
     this.contacts = await this.contactsApiService.getAllContacts();
   }
 }

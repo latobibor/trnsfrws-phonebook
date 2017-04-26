@@ -7,7 +7,7 @@ describe('AddContact', function () {
     let addContactComponent: AddContact;
     let apiMock: any;
 
-    beforeEach(async(() => {
+    beforeEach(async(function () {
         apiMock = {
             addContact: jasmine.createSpy('apiMock')
         };
@@ -31,6 +31,14 @@ describe('AddContact', function () {
     });
 
     it('should call resultCallBack with name and phone number', function () {
+        addContactComponent.name = 'Tivadar';
+        addContactComponent.phoneNumber = '456';
+        
         addContactComponent.onSubmit();
+
+        expect(apiMock.addContact.calls.argsFor(0)[0]).toEqual({
+            name: addContactComponent.name,
+            phoneNumber: addContactComponent.phoneNumber
+        });
     });
 });
