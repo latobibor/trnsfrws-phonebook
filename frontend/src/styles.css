@@ -8,7 +8,7 @@ body {
 /* Main level */
 .phone-book_main-container {
     height: 100%;
-    background-color: #EEE;
+    background-color: #eee;
     display: flex;
 }
 
@@ -17,7 +17,12 @@ body {
     flex: 1;
     max-width: 800px;
     min-width: 200px;
-    background-color: #DDD;
+    background-color: #ddd;
+}
+
+.phone-book_app-container > h1, h2 {
+  /* Usually I use SASS to capture variable for this */
+  padding: 5px 20px;
 }
 
 .phone-book_left {
@@ -32,16 +37,19 @@ body {
 
 /* Middle container */
 .phone-book_app-container {
-    padding: 0 25px;
+    min-width: 320px;
 }
 
 h1 {
-  color: #369;
+  width: 100%;
+  background-color: #129793;
+  color: white;
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 2em;
+  text-transform: uppercase;
 }
 
 h2 {
-  margin-bottom: 0.2em;
   font-size: 16pt;
 }
 
@@ -52,9 +60,16 @@ h2 {
   }
 }
 
-/* Add contact */ 
-.phone-book_add-contact-container {
-  max-width: 50%;
+/* Ribbons and paddings */
+contacts h2 {
+  padding: 5px 20px; 
+  color: white; /* #ee6060 */
+  background: linear-gradient(90deg, rgba(238, 96, 96, 0.6), rgba(255, 117, 117, 0.5));
+  text-transform: uppercase;
+}
+
+.phone-book_section {
+  padding: 5px 20px;
 }
 
 /* contacts list */

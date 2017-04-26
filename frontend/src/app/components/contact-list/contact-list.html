@@ -1,6 +1,7 @@
-<div class="phone-book_contact-list">
-    <h2>Contacts</h2>
-    <ul>
+<h2>Contacts</h2>
+
+<div class="phone-book_contact-list phone-book_section">
+    <ul *ngIf="visibleContacts.length > 0">
         <li class="header">
             <div>Name</div>
             <div class="phone-book_contact-list_phone-number-label">Phone number</div>
@@ -9,4 +10,5 @@
             <contact [model]="contact"></contact>
         </li>
     </ul>
+    <span *ngIf="visibleContacts.length === 0" class="">None of your contacts matched your search criteria</span>
 </div>

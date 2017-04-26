@@ -28,7 +28,6 @@ export class Contacts implements OnInit, OnDestroy {
   }
 
   public async search({ name = '', phoneNumber = '' }): Promise<void> {
-    console.log('eee', name, phoneNumber);
     this.contacts = await this.contactsApiService.search(name, phoneNumber);
   }
 
