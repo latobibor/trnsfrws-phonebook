@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import componentToggler from '../../utilities/component-toggler';
 
 @Component({
     inputs: [ 'resultCallback' ],
@@ -11,6 +12,7 @@ export class SearchBar {
     public resultCallback: Function;
 
     constructor() {
+        Object.assign(this, componentToggler);
     }
 
     public getResults() {

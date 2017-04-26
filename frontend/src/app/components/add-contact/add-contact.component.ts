@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { ContactsApiService } from '../../services/contacts-api.service';
+import componentToggler from '../../utilities/component-toggler';
 
 @Component({
   selector: 'add-contact',
@@ -10,6 +11,7 @@ export class AddContact {
     public phoneNumber: string = '';
 
     constructor(@Inject(ContactsApiService) private contactsApiService: ContactsApiService) {
+      Object.assign(this, componentToggler);
     }
 
     public onSubmit() {

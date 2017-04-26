@@ -1,6 +1,9 @@
-<h2>Search <i class="fa fa-search" aria-hidden="true"></i></h2>
+<h2 class="clickable-title" (click)="toggleDialog()">Search <i class="fa fa-search" aria-hidden="true"></i>
+    <span class="navigation" *ngIf="showDialog"><i class="fa fa-compress" aria-hidden="true"></i></span>
+    <span class="navigation" *ngIf="!showDialog"><i class="fa fa-expand" aria-hidden="true"></i></span>
+</h2>
 
-<div class="phone-book_search-container phone-book_section">
+<div *ngIf="showDialog" class="phone-book_search-container phone-book_section">
     <div class="phone-book_search-by">
         <label>By name:</label>
         <input

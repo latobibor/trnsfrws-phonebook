@@ -1,6 +1,9 @@
-<h2>Add a contact <i class="fa fa-plus" aria-hidden="true"></i></h2>
+<h2 class="clickable-title" (click)="toggleDialog()">Add a contact <i class="fa fa-plus" aria-hidden="true"></i>
+    <span class="navigation" *ngIf="showDialog"><i class="fa fa-compress" aria-hidden="true"></i></span>
+    <span class="navigation" *ngIf="!showDialog"><i class="fa fa-expand" aria-hidden="true"></i></span>
+</h2>
 
-<div class="phone-book_add-contact-container phone-book_section">
+<div class="phone-book_add-contact-container phone-book_section" *ngIf="showDialog">
     <form #addContactForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="phone-book_add-contact_form">
             <div class="phone-book_add-contact_fields">

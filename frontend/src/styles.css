@@ -139,3 +139,11 @@ contact {
     font-size: 1.2rem;
     text-align: center; 
 }
+
+span.navigation {
+  float: right;
+}
+
+h2.clickable-title:hover {
+  background-color: #893ea3;
+}
