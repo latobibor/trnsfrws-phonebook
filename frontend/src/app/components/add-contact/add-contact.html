@@ -1,4 +1,4 @@
-<h2>Add a contact +</h2>
+<h2>Add a contact <i class="fa fa-plus" aria-hidden="true"></i></h2>
 
 <div class="phone-book_add-contact-container phone-book_section">
     <form #addContactForm="ngForm" (ngSubmit)="onSubmit()">
@@ -10,6 +10,7 @@
                     id="nameField"
                     name="nameField"
                     type="text" 
+                    placeholder="Enter a name"
                     [(ngModel)]="name" 
                     minlength="3"
                     maxlength="50"
@@ -23,6 +24,7 @@
                     id="phoneField"
                     name="phoneField"
                     type="text" 
+                    placeholder="Enter a phone number"
                     [(ngModel)]="phoneNumber" 
                     minlength="6"
                     maxlength="20"
